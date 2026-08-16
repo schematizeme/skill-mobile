@@ -88,4 +88,3 @@ O servidor continua dono da verdade: **authz (`iam-mobile.md`), validação de i
 regra de negócio e preço**. Pinning, attestation e ofuscação **elevam o custo** do atacante — não
 transferem a decisão de segurança pro cliente. Um app "muito protegido" com endpoint sem authz é
 inseguro. A ordem é: **servidor correto primeiro**, defesa em profundidade no cliente depois.
-</content>

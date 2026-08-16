@@ -120,4 +120,3 @@ Independente do reference, estes limites nunca são cruzados:
   cliente. O app vira superfície de ataque testável.
 - **schematize-audit** — fecha o loop: os checklists de mobile (IAM/offline/release) viram itens
   provados, não marcados na fé.
-</content>

@@ -87,4 +87,3 @@ uma **decisão de produto que vira ADR**:
 - **Relógio adverso:** device com relógio adiantado/atrasado não corrompe a ordenação.
 - **Airplane-mode no CI/manual:** roteiro de QA (`/mobile-offline`) que exercita o app 100%
   offline e valida que nada trava nem perde dado.
-</content>

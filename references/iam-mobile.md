@@ -102,4 +102,3 @@ Casa com `iam.md` §3 ("passkey é núcleo, já é 2 fatores num"):
 - [ ] **Authz sempre no servidor** (deny-default, token fino, ReBAC multi-tenant); esconder botão ≠
   autorizar.
 - [ ] Jailbreak/root alimenta o **risk engine**; testes de abuso de fluxo no IdP (schematize-pentest).
-</content>

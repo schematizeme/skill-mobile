@@ -76,4 +76,3 @@
   cenário padrão — acompanhadas por release (casa com `entrega-lojas.md` §6 e `observabilidade.md`).
 - **Teste em device fraco e rede ruim:** o device topo de linha do dev mente. Matriz de teste inclui
   aparelho de baixo custo, SO antigo suportado, e rede throttled/offline.
-</content>

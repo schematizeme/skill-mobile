@@ -84,4 +84,3 @@
   compatível com a faixa de versão nativa.
 - [ ] **Crash/ANR** com símbolos subidos; telemetria **sem PII/segredo**; privacy labels/ATT/permissões corretas.
 - [ ] Conta/roteiro de **review** preparados; regras da loja verificadas.
-</content>

@@ -76,5 +76,4 @@ O app quase nunca vive sozinho: fala com um **backend do rol sancionado** (Go/Ru
 Ruby), com **IAM como app separada** em `auth.<domain>` (`iam.md`). O contrato de API (BFF/gateway)
 é versionado e testado; o app **delega** authz e segredo ao servidor. Mobile não é ilha: é o
 cliente de uma arquitetura que já tem os pisos da casa.
-</content>
 </invoke>
