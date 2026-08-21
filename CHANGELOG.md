@@ -1,6 +1,20 @@
 # Changelog — schematize-mobile
 
-Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/). Versionamento semântico.
+Todas as mudanças relevantes deste pacote, no formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
+com versionamento [SemVer](https://semver.org/lang/pt-BR/).
+
+
+## [0.3.0] — 2026-08-21
+As duas promessas de primeira linha que a vistoria de 2026-08-21 achou vazias: *"o mesmo piso, incluindo **testes**"* entregava **9 linhas** dentro de `offline-sync.md`, e **push** — promessa da 1ª linha da description — entregava 17 linhas sem rotação de token, sem `POST_NOTIFICATIONS` e sem limpeza de token morto.
+
+### Adicionado
+- **`references/testes-mobile.md`** — o capítulo de testes, **como ponteiro**: a pirâmide, o teste de comportamento e o flaky continuam sendo da `schematize-qa`; aqui fica o que o **dispositivo** muda. Fronteiras da pirâmide no app (unidade sem `Context`/`UIApplication`), **matriz de dispositivos escrita e datada** (piso e teto de SO no CI, o parque real por analytics, os extremos que quebram layout), e os casos que não existem no servidor: permissão negada **nos três estados**, deep link com app fechado/em background/**deslogado**/adulterado, **migração do banco local a partir da versão anterior** (teste que cria o banco do zero **não** testa migração — a condição vacuamente verdadeira do mobile, e no device do usuário **não há rollback**), upgrade com estado, processo morto pelo SO, **rede ruim e não ausente**, relógio/fuso/locale adversos, disco cheio, a11y no fontScale máximo.
+- **`/mobile-test`** — o comando que exercita esse capítulo.
+- **`references/performance.md` §4 — ciclo de vida do token de push:** rotação (o token **não é estável**: reinstalação, restauração de backup, limpeza de dados, atualização; re-registro **em toda abertura**, substituindo o registro anterior) · **logout e troca de usuário apagam o token no servidor ANTES de encerrar a sessão** — token que sobrevive ao logout manda push do usuário antigo para quem entrou depois · **`POST_NOTIFICATIONS`**, permissão de runtime desde o **Android 13 (API 33, 2022)**: em `targetSdk` ≥ 33 sem o pedido o app **simplesmente não notifica, e nenhum erro aparece no log** · **limpeza de token morto** pela resposta do provedor (`Unregistered`/`410`/`UNREGISTERED`) — sem isso a base incha, a taxa de erro sobe e o provedor limita o canal inteiro: o push que importa (OTP, alerta) para de chegar por causa do que não importava.
+- **`references/performance.md` §4.1 — push entra na suíte**: 10 casos contra **servidor falso de APNs/FCM**, porque push não se testa mandando push (efeito externo não sai de não-produção).
+
+### Mudado
+- `SKILL.md` e `/mobile-load` passam a listar o novo reference; o fluxo de uso ganhou o passo "teste como app, não como servidor".
 
 ## [0.2.0] — 2026-08-20
 
