@@ -4,6 +4,20 @@ Todas as mudanças relevantes deste pacote, no formato [Keep a Changelog](https:
 com versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 
+## [0.4.0] — 2026-08-21
+Segunda leva do saneamento: as lacunas de escopo do inventário da vistoria.
+
+### Adicionado
+- **`offline-sync.md` §3.1 — o sync-token é um CONTRATO**: opaco (*o cliente que "sabia" o que o token significava quebra quando o servidor muda a estratégia — e ele está **instalado***), monotônico, **expirável com `410 Gone` ⇒ full resync** (*devolver 200 com delta incompleto é como o cliente fica com um estado que nunca converge, e ninguém descobre porque não há erro*), retenção declarada e idempotência dos dois lados. Mais o **ciclo de vida do tombstone**, com a regra que amarra os números: **TTL do tombstone ≥ janela do sync-token**.
+- **`offline-sync.md` §3.2 — migração do schema local e da outbox**, onde **não há rollback no device**: migração para frente **testada a partir da versão publicada**; **a outbox migra junto** (o app novo abre fila escrita pelo app velho — versione cada item ou drene antes, sabendo que drenar exige rede); **nunca descartar a fila em silêncio** (quarentena visível — mutação que some sem rastro é o "salvou" que virou mentira); versão checada no boot, com o app antigo **recusando** banco novo.
+- **`plataforma.md` §4.1 — i18n e localização**, com o argumento que falta em quase todo time: *no web você troca o texto e faz deploy; no app a string errada **está instalada***. Plural pelo mecanismo da plataforma (a regra do polonês não é binária), placeholder posicional, formato pelo locale, **locale por app**, pseudo-locale e RTL no fontScale máximo.
+- **`entrega-lojas.md` §3.1 — forced update e `min_supported_version`**, o único "rollback" real: as três alavancas (halt do rollout · **kill-switch de feature**, que precisa existir **antes** do incidente · forced update), com endpoint de política **independente do que quebrou**, **fail-open** quando ele não responde, `min_supported` ≠ `recommended`, e o caminho **ensaiado**.
+- **`performance.md` §3.1 — execução em background é POLÍTICA do SO**: App Standby Buckets (o mesmo código com comportamento diferente **por usuário**), Doze, alarme exato com permissão, **FGS com `type` (Android 14+)**, restrições de fabricante, e no iOS o fato de que `BGTask` é **oportunista, sem garantia**. MUST: background **idempotente, retomável e observável**, e produto que **não depende** dele para função essencial.
+
+### Mudado
+- **React Native no rol passou a dizer "New Architecture"** (padrão desde a 0.76), com o que isso muda na **decisão de fit**: biblioteca sem suporte é **dívida com prazo**, migrar é **projeto com ADR**, e *comparar RN "pelo que ele era" é comparar com um produto que não existe mais*.
+- README com a contagem de pisos corrigida (8 → 9) — hoje verificada pela regra `contagem` do lint do catálogo.
+
 ## [0.3.0] — 2026-08-21
 As duas promessas de primeira linha que a vistoria de 2026-08-21 achou vazias: *"o mesmo piso, incluindo **testes**"* entregava **9 linhas** dentro de `offline-sync.md`, e **push** — promessa da 1ª linha da description — entregava 17 linhas sem rotação de token, sem `POST_NOTIFICATIONS` e sem limpeza de token morto.
 
