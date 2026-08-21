@@ -1,6 +1,7 @@
 ---
 description: schematize-mobile — lista todos os comandos disponíveis e o que cada um faz
 ---
+<!-- cross-skill: iam.md -> schematize-engineering -->
 
 Liste os comandos do **schematize-mobile** instalados (`/mobile-*`), com 1 linha cada:
 

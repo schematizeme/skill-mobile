@@ -1,3 +1,4 @@
+<!-- cross-skill: observabilidade.md -> schematize-engineering -->
 # Performance, bateria, rede e push — o device é limitado e o usuário sente
 
 > No servidor a métrica é throughput; no **mobile é a experiência num aparelho fraco, com bateria

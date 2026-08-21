@@ -1,3 +1,4 @@
+<!-- cross-skill: cadeia-suprimentos.md, seguranca.md -> schematize-engineering -->
 # Segurança mobile — o dispositivo é território hostil
 
 > O piso de segurança da casa (`seguranca.md`) vale inteiro no mobile; este reference diz o que o

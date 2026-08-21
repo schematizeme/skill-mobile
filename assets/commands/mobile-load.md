@@ -1,6 +1,7 @@
 ---
 description: schematize-mobile — carrega à força TODO o corpo normativo (plataforma, offline/sync, IAM mobile, segurança, entrega, performance) e passa a aplicá-lo
 ---
+<!-- cross-skill: iam.md -> schematize-engineering -->
 
 Carregue **à força** e passe a aplicar **integralmente** os Padrões de Engenharia de Apps Mobile
 da Casa (skill `schematize-mobile`) neste projeto. A partir de agora, nesta sessão, isto **não é

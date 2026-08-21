@@ -2,6 +2,7 @@
 description: schematize-mobile — prepara/audita o release de loja (assinatura em cofre, build no CI, staged/phased rollout com gate + halt, OTA nas regras, review, kill-switch, crash com símbolos)
 argument-hint: "[track alvo, ex: internal | testflight | production]"
 ---
+<!-- cross-skill: observabilidade.md -> schematize-engineering -->
 
 Prepare/audite o **release de loja** deste app (`references/entrega-lojas.md`). Entre o commit e o
 usuário há uma **loja** (revisão, assinatura, rollout gradual) e o binário na mão do usuário **não

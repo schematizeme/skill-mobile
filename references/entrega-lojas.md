@@ -1,3 +1,4 @@
+<!-- cross-skill: efeitos-externos.md, entrega.md, observabilidade.md, ops.md -> schematize-engineering -->
 # Entrega nas lojas — assinatura, rollout, OTA, review, observabilidade
 
 > A entrega da casa (`entrega.md`, DoD §35, archive §28) vale inteira no mobile; o que muda é que

@@ -2,8 +2,9 @@
 name: schematize-mobile
 metadata:
   version: 0.2.0
-description: Engenharia de apps mobile da casa — o mesmo piso (segurança, IAM, testes, ops, DoD, archive) da schematize-engineering, no cliente hostil que é o dispositivo. Cobre a escolha de plataforma (nativo iOS Swift / Android Kotlin vs cross KMP/Flutter/RN — por fit + ADR, como a política de linguagem da casa); offline-first & sync (UI lê do local, outbox durável de mutações, idempotência, delta sync, tombstones, resolução de conflito explícita — LWW/merge/CRDT/servidor-autoritativo, nenhuma escrita some em silêncio); IAM mobile CASANDO com o iam.md (app é public client OIDC/PKCE delegando ao auth.<domain>, NUNCA login próprio nem client_secret no bundle; passkeys de plataforma + biometria como núcleo, biometria desbloqueia LOCAL e não substitui step-up server-side; refresh/chaves em Keychain/Keystore/Secure Enclave, nunca em store em claro nem em log/crash; retorno por Universal/App Links verificados, login no navegador do sistema e não WebView; logout irreversível revoga refresh+família e desassocia push; authz sempre no servidor, token fino, ReBAC multi-tenant); push notifications (APNs/FCM, token atado à sessão, payload é gatilho não segredo, permissão just-in-time); performance/bateria/rede (cold start, main thread livre, WorkManager/BGTaskScheduler, delta/coalescing, medir não adivinhar); entrega nas lojas (assinatura em cofre, build assinado no CI, staged/phased rollout com gate de crash-free e halt, OTA de JS/config dentro das regras, review guidelines, kill-switch); efeito externo NUNCA fora de produção (build de dev/QA/TestFlight jamais aponta pro backend de prd nem pro provedor real — ambiente por build configuration/flavor/scheme, fail-closed; push em sandbox APNs/projeto FCM de teste; conta de teste/review em domínio de ROTA NULA, nunca caixa real; Email OTP de teste lido no sink); observabilidade/crash (Crashlytics/Sentry com símbolos, telemetria sem PII); segurança (cert/SPKI pinning com backup, root/jailbreak + attestation como SINAL pro risk engine, ofuscação sensata que eleva custo mas não guarda segredo, dado cifrado em repouso, deep link/IPC como entrada hostil). Enfatiza: o piso da casa é o MESMO — muda o "como". Use SEMPRE que for projetar, gerar, revisar ou refatorar app iOS/Android/cross, decidir plataforma, desenhar auth/offline/sync/push de mobile, publicar em loja, ou tratar performance/segurança de app — mesmo sem citar "padrão". Pareia com schematize-engineering (a BASE: IAM/DoD §35/archive §28/índice §39), com o backend do rol (go/rust/elixir/c#/zig/ruby) que o app consome, e com schematize-pentest (o app é território hostil).
+description: Engenharia de apps mobile da casa — o mesmo piso (segurança, IAM, testes, ops, DoD, archive) no cliente hostil que é o dispositivo. Cobre escolha de plataforma (nativo iOS/Android vs cross KMP/Flutter/RN, por fit + ADR); offline-first e sync (UI lê do local, outbox durável, idempotência, delta sync, tombstones, conflito resolvido explicitamente — nenhuma escrita some em silêncio); IAM mobile (app é public client OIDC/PKCE delegando ao auth.<domain>, NUNCA login próprio nem client_secret no bundle; passkeys e biometria desbloqueiam o LOCAL e não substituem step-up no servidor; chaves em Keychain/Keystore; logout irreversível); push (token atado à sessão, payload é gatilho não segredo); performance/bateria/rede; entrega nas lojas (assinatura em cofre, rollout gated por crash-free, kill-switch); e efeito externo que NUNCA sai de não-produção (build de QA/TestFlight não fala com prd). Use SEMPRE que for projetar, gerar ou revisar app iOS/Android/cross, auth, offline/sync, push ou publicação em loja.
 ---
+<!-- cross-skill: iam.md, linguagens.md -> schematize-engineering -->
 
 # Engenharia de apps mobile da casa (schematize-mobile)
 
@@ -128,7 +129,13 @@ Independente do reference, estes limites nunca são cruzados:
 - **schematize-engineering** — a **BASE** agnóstica. Esta skill herda e não afrouxa: **IAM**
   (`iam.md`, o modelo que o `iam-mobile.md` realiza), **DoD (§35)**, **archive (§28)**, **índice/
   MAPA (§39)**, **ops (§ ops.md)**, **cadeia de suprimentos**, **observabilidade**, e o fluxo
-  (scan/plan/refactor/overdev/auditoria). A escolha de plataforma espelha a **política de linguagem**
+  (scan/plan/refactor/overdev/auditoria).
+  **Anti-padrões (§37): esta skill NÃO tem lista própria — herda a da base por ponteiro**
+  (`schematize-engineering` → `references/anti-padroes.md`), incluindo *"Disparar efeito externo
+  REAL a partir de não-produção"*. É deliberado: a `schematize-mobile` segue o **modelo de
+  ponteiro** (zero clone da base); o recorte mobile de cada anti-padrão que muda de forma no
+  dispositivo está nos references desta skill, citado **pelo título** do item — nunca pelo número,
+  porque a numeração do §37 diverge entre skills. A escolha de plataforma espelha a **política de linguagem**
   (`linguagens.md`): rol sancionado + fit + ADR.
 - **schematize-go / rust / elixir / c# / zig / ruby** — o **backend** que o app consome. O app fala
   com um serviço do rol sancionado; a authz, a regra de negócio e o segredo moram lá.
@@ -140,3 +147,11 @@ Independente do reference, estes limites nunca são cruzados:
   cliente. O app vira superfície de ataque testável.
 - **schematize-audit** — fecha o loop: os checklists de mobile (IAM/offline/release) viram itens
   provados, não marcados na fé.
+
+- **schematize-qa** — a **disciplina de teste**, que esta skill herda inteira. O recorte mobile é
+  o *onde roda* (emulador/simulador e device farm no CI, teste instrumentado vs unit na JVM/host,
+  UI test que espera evento e não `sleep`, snapshot por densidade de tela) — mas a pirâmide, o
+  "verde de verdade", o smoke com self-check, a política de **flaky** (endêmica em teste de UI:
+  quarentena com prazo e dono, nunca `retry` infinito) e os **gates de CI** são da
+  `schematize-qa`. Rollout escalonado com gate de crash-free é entrega, não substituto de teste —
+  a `schematize-qa` é explícita em que gate não se desliga "por enquanto".

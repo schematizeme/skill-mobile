@@ -1,3 +1,4 @@
+<!-- cross-skill: iam.md -> schematize-engineering -->
 # IAM no mobile — o mesmo piso da casa, no cliente hostil
 
 > Este reference **não inventa** um IAM de mobile: ele **casa com o `iam.md`** da

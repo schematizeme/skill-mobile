@@ -1,3 +1,4 @@
+<!-- cross-skill: iam.md -> schematize-engineering -->
 # CLAUDE.md — Engenharia de Apps Mobile da Casa (sempre on)
 
 > Copie para a **raiz do repositório** do app e ajuste `<project>`. Fica pinado no contexto de
@@ -59,6 +60,16 @@ memória.
    binário instalado; bounce/complaint em massa queima IP/domínio e derruba o **OTP de login** de
    produção. Normativa: `schematize-engineering` → `references/efeitos-externos.md`; recorte em
    `entrega-lojas.md` §7 e `iam-mobile.md` §8.
+
+## Definition of Done
+
+Nada é "pronto" sem: unit + UI/instrumentado verdes, fluxo crítico com e2e, **nenhum efeito externo
+real fora de produção** (build de dev/QA/TestFlight nunca aponta pro backend nem pro provedor de
+`prd`; push em sandbox APNs / projeto FCM de teste; conta de teste/review em domínio de **rota
+nula**; Email OTP lido do **sink** — gate em `scripts/check-external-effects.sh`), crash-free acima
+do gate de rollout, sem segredo no bundle, **índice atualizado**, **archive commitado**, CI verde e
+review aprovado. A DoD (§35) é a da base, `schematize-engineering` → `references/entrega.md`; o
+recorte mobile está em `references/entrega-lojas.md`.
 
 ## Como se decide aqui
 

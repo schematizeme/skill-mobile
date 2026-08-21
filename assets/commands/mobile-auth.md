@@ -2,6 +2,7 @@
 description: schematize-mobile — força/audita o IAM mobile casado com o iam.md (OIDC/PKCE ao auth.<domain>, passkeys+biometria, secure storage, logout irreversível, sem segredo no bundle, authz no servidor)
 argument-hint: "[dir do app, ex: <projeto>_ios | <projeto>_android | <projeto>_kmp]"
 ---
+<!-- cross-skill: iam.md -> schematize-engineering -->
 
 Force/audite o **IAM mobile** deste app (`references/iam-mobile.md`), **casado com o `iam.md`** da
 `schematize-engineering`. O app é só **mais um cliente do IdP da casa** — ele **não** implementa
