@@ -131,13 +131,14 @@ Independente do reference, estes limites nunca são cruzados:
    milhares de devices de testadores** — e o app **já está distribuído**, não existe rollback como
    num deploy de servidor. Detalhe em `references/entrega-lojas.md` §7 e `references/iam-mobile.md`
    §8.
+10. **Orquestrador não desenvolve; subagent barato executa** (`schematize-engineering` → `references/orquestracao.md` §9): o principal só planeja/decompõe/despacha/revisa; toda ação onerosa vira micro-tasks; subagents em `sonnet` por padrão (falhou → mesmo subagent corrige, até 2 rodadas → re-decompõe → só então `opus`, com motivo no checkpoint). No **overdev**, cada item do checklist é executado por subagent `sonnet` e revisado pelo principal.
 
 ## Relação com as outras skills
 
 - **schematize-engineering** — a **BASE** agnóstica. Esta skill herda e não afrouxa: **IAM**
   (`iam.md`, o modelo que o `iam-mobile.md` realiza), **DoD (§35)**, **archive (§28)**, **índice/
   MAPA (§39)**, **ops (§ ops.md)**, **cadeia de suprimentos**, **observabilidade**, e o fluxo
-  (scan/plan/refactor/overdev/auditoria).
+  (scan/plan/refactor/overdev/auditoria) — no laço do overdev cada item é executado por subagent `sonnet` e revisado pelo principal (`schematize-engineering` → `references/orquestracao.md` §9).
   **Anti-padrões (§37): esta skill NÃO tem lista própria — herda a da base por ponteiro**
   (`schematize-engineering` → `references/anti-padroes.md`), incluindo *"Disparar efeito externo
   REAL a partir de não-produção"*. É deliberado: a `schematize-mobile` segue o **modelo de

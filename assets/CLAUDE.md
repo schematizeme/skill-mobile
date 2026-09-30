@@ -60,6 +60,7 @@ memória.
    binário instalado; bounce/complaint em massa queima IP/domínio e derruba o **OTP de login** de
    produção. Normativa: `schematize-engineering` → `references/efeitos-externos.md`; recorte em
    `entrega-lojas.md` §7 e `iam-mobile.md` §8.
+9. **Orquestrador não desenvolve; subagent barato executa** (`schematize-engineering` → `references/orquestracao.md` §9). O agent principal (o que fala com o humano, modelo padrão da sessão) **só planeja, decompõe, despacha, supervisiona e revisa** — não escreve código de entrega. Toda ação onerosa é quebrada em **micro-tasks/micro-funções** executáveis por agent barato. Subagents rodam em **`sonnet` por padrão**; falhou → o **mesmo subagent corrige** (até 2 rodadas) → re-decompõe → só então **`opus`**, com motivo registrado no checkpoint. O principal revisa toda entrega (diff + gate) e **só corrige com a própria mão se necessário**. No **overdev**, cada item do checklist é executado por subagent `sonnet` e revisado pelo principal antes do `- [x]`.
 
 ## Definition of Done
 
