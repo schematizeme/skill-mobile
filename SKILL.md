@@ -131,7 +131,7 @@ Independente do reference, estes limites nunca são cruzados:
    milhares de devices de testadores** — e o app **já está distribuído**, não existe rollback como
    num deploy de servidor. Detalhe em `references/entrega-lojas.md` §7 e `references/iam-mobile.md`
    §8.
-10. **Orquestrador não desenvolve; subagent barato executa** (`schematize-engineering` → `references/orquestracao.md` §9): o principal só planeja/decompõe/despacha/revisa; toda ação onerosa vira micro-tasks; subagents em `sonnet` por padrão (falhou → mesmo subagent corrige, até 2 rodadas → re-decompõe → só então `opus`, com motivo no checkpoint). No **overdev**, cada item do checklist é executado por subagent `sonnet` e revisado pelo principal. **Sem frota ociosa:** agent idle com pendência executável volta ao trabalho; pendência que depende de outro agent → mata e enfileira com gatilho de dependência; terminou → mata (§9.6).
+10. <!-- herdado:engineering/orquestracao:bullet -->**Orquestrador não desenvolve; subagent barato executa** (`schematize-engineering` → `references/orquestracao.md` §9). O principal só planeja/decompõe/despacha/supervisiona/revisa; ação onerosa vira micro-tasks; subagents em `sonnet` por padrão (falhou → mesmo subagent corrige, até 2 rodadas → re-decompõe → só então `opus`, com motivo registrado no checkpoint). No `overdev`, cada item do checklist é executado por subagent `sonnet` e revisado pelo principal (diff + gate) antes do `- [x]`. **Sem frota ociosa:** agent idle com pendência executável volta ao trabalho; pendência que depende de outro agent → mata e enfileira com gatilho de dependência; terminou → mata (§9.6).<!-- /herdado -->
 
 ## Relação com as outras skills
 
