@@ -14,6 +14,9 @@ Corte de Target API vigente, ponteiros corrigidos, divisão de mando com as skil
 - `description` com 350 caracteres ou menos (era 1010).
 - **Description** reduzida (~270 chars) para caber no orçamento de listagem (soma das 31 skills ≤ 8500; o Claude Code corta a listagem acima disso).
 
+### Alterado
+- `scripts/check-external-effects{,.test}.sh` viram arquivos herdados da engineering (cabeçalho "herdado de schematize-engineering — não edite aqui"); conteúdo inalterado.
+
 ## [0.5.2] — 2026-09-30
 O piso de orquestração passa a ser **herdado** da base em vez de copiado à mão: uma mudança na engineering não exige mais editar 38 arquivos.
 
