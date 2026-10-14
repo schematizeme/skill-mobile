@@ -3,7 +3,9 @@ name: schematize-mobile
 metadata:
   version: 0.5.2
 description: >-
-  Engenharia de apps mobile da casa: plataforma (nativo vs cross por fit + ADR), offline-first e sync, IAM mobile (OIDC/PKCE, passkeys, Keychain/Keystore), push, performance e entrega nas lojas. Use ao projetar ou revisar app iOS/Android/KMP/Flutter/RN, login, offline, push ou publicação em loja (Info.plist, AndroidManifest, Gradle).
+  Engenharia de apps mobile: plataforma (nativo vs cross por fit + ADR), offline-first e sync, IAM mobile (OIDC/PKCE,
+  passkeys), push e entrega nas lojas. Use ao projetar ou revisar app iOS/Android/KMP/Flutter/RN, login, offline,
+  push ou publicação (Info.plist, AndroidManifest).
 ---
 <!-- cross-skill: iam.md, linguagens.md -> schematize-engineering -->
 

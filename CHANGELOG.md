@@ -12,6 +12,7 @@ Corte de Target API vigente, ponteiros corrigidos, divisão de mando com as skil
 - `references/stack-versoes.md`: o corte de 31/08/2026 (API 36) já passou; passa a "vigente", com extensão até 01/11/2026 e isenção de app privado (doc oficial do Android). Próximo corte marcado `<!-- reverificar -->`.
 - `SKILL.md`: ponteiros para `schematize-swift`, `schematize-kotlin` e `schematize-dart`; a mobile manda em auth/offline/push/loja, as de linguagem no código.
 - `description` com 350 caracteres ou menos (era 1010).
+- **Description** reduzida (~270 chars) para caber no orçamento de listagem (soma das 31 skills ≤ 8500; o Claude Code corta a listagem acima disso).
 
 ## [0.5.2] — 2026-09-30
 O piso de orquestração passa a ser **herdado** da base em vez de copiado à mão: uma mudança na engineering não exige mais editar 38 arquivos.
