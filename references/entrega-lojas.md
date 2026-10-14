@@ -86,7 +86,7 @@ alavancas, com custos diferentes:
 - **No OTA, VOCÊ é a loja.** A revisão que a App Store/Play faz não acontece no bundle JS — então o
   piso de distribuição volta inteiro para o time: **update assinado, verificado antes de aplicar,
   com pin de versão e rollback testado**. É o mesmo piso que a **`schematize-desktop`** detalha
-  (`references/auto-update.md`), pelo mesmo motivo: quando não há loja no caminho, quem garante a
+  (`schematize-desktop → references/auto-update.md`), pelo mesmo motivo: quando não há loja no caminho, quem garante a
   integridade do artefato é você.
 
 ## 4.1 Requisitos de plataforma com PRAZO — o que reprova o upload

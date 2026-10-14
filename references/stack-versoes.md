@@ -4,18 +4,18 @@
 > ferramenta de mobile morre rápido. O corpo normativo diz **princípio**; o que tem prazo mora
 > aqui. O lint do catálogo (regra `anexo-volatil`) reprova versão cravada fora daqui.
 >
-> **Verificado em: 2026-08-21.** Cadência: **revisão trimestral** — e, para os requisitos de loja,
+> **Verificado em: 2026-10-14** (Target API; o resto da página segue em 2026-08-21). Cadência: **revisão trimestral** — e, para os requisitos de loja,
 > **antes de todo release**, porque o modo de falha deles é o app pronto não subir no dia.
 
 ## Gates de upload — os que reprovam a submissão
 
 | Requisito | Loja | Prazo | Se faltar |
 |---|---|---|---|
-| **Target API level** | Google Play | a partir de **31/08/2026**: novo e atualização miram **Android 16 (API 36)**; Wear OS/Automotive API 35; TV/XR API 34. App existente precisa de **API 35+** para continuar aparecendo a novos usuários. O corte é **anual, em 31 de agosto**. | upload recusado |
+| **Target API level** | Google Play | **vigente desde 31/08/2026** (doc oficial do Android): novo app e atualização miram **Android 16 (API 36)**; Wear OS/Automotive API 35; TV/XR API 34. App existente precisa de **API 35+** para continuar aparecendo a novos usuários. Extensão até **01/11/2026** pedida no Play Console; app privado de organização é isento. O corte é **anual, em 31 de agosto** (o próximo, API 37, é esperado em ago/2027 <!-- reverificar -->). | upload recusado |
 | **Page size de 16 KB** | Google Play (Android 15+, 64-bit) | exigido desde **01/11/2025** | upload recusado se houver `.so` desalinhado — **inclusive de SDK de terceiro** |
 | **Privacy manifest** (`PrivacyInfo.xcprivacy`) | Apple | bloqueia upload **desde mai/2024** | upload recusado quando o app **ou um SDK da lista** usa *required-reason API* sem declarar, ou SDK da lista sem assinatura |
 
-> **Ponha o 31/08 no calendário do time.** O corte é anual e não avisa; quem descobre no dia do
+> **Ponha o 31/08 no calendário do time (o de 2026 já passou: se o `targetSdk` ainda está abaixo de 36, é bloqueio de release, não agenda).** O corte é anual e não avisa; quem descobre no dia do
 > release perde o release. Trate o bump de `targetSdk` como manutenção **agendada**, com teste de
 > regressão dos comportamentos que a API nova muda.
 

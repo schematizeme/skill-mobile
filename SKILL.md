@@ -2,7 +2,8 @@
 name: schematize-mobile
 metadata:
   version: 0.5.2
-description: Engenharia de apps mobile da casa — o mesmo piso (segurança, IAM, testes, ops, DoD, archive) no cliente hostil que é o dispositivo. Cobre escolha de plataforma (nativo iOS/Android vs cross KMP/Flutter/RN, por fit + ADR); offline-first e sync (UI lê do local, outbox durável, idempotência, delta sync, tombstones, conflito resolvido explicitamente — nenhuma escrita some em silêncio); IAM mobile (app é public client OIDC/PKCE delegando ao auth.<domain>, NUNCA login próprio nem client_secret no bundle; passkeys e biometria desbloqueiam o LOCAL e não substituem step-up no servidor; chaves em Keychain/Keystore; logout irreversível); push (token atado à sessão, payload é gatilho não segredo); performance/bateria/rede; entrega nas lojas (assinatura em cofre, rollout gated por crash-free, kill-switch); e efeito externo que NUNCA sai de não-produção (build de QA/TestFlight não fala com prd). Use SEMPRE que for projetar, gerar ou revisar app iOS/Android/cross, auth, offline/sync, push ou publicação em loja.
+description: >-
+  Engenharia de apps mobile da casa: plataforma (nativo vs cross por fit + ADR), offline-first e sync, IAM mobile (OIDC/PKCE, passkeys, Keychain/Keystore), push, performance e entrega nas lojas. Use ao projetar ou revisar app iOS/Android/KMP/Flutter/RN, login, offline, push ou publicação em loja (Info.plist, AndroidManifest, Gradle).
 ---
 <!-- cross-skill: iam.md, linguagens.md -> schematize-engineering -->
 
@@ -45,6 +46,7 @@ Os comandos ficam em `assets/commands/` e são instalados em `.claude/commands/`
 1. **Decida a plataforma primeiro, com ADR** (`references/plataforma.md`): nativo (Swift/Kotlin)
    ou cross (KMP/Flutter/RN) por **fit + ADR (§27)**, como a política de linguagem da casa. A
    escolha é estrutural e vira registro, não gosto do dia.
+   **Divisão de mando:** esta skill manda no que é de *app* (auth, offline/sync, push, lojas, performance); as de linguagem mandam no código — `schematize-swift` (iOS nativo), `schematize-kotlin` (Android/KMP) e `schematize-dart` (Flutter). Em conflito sobre auth/offline/push/loja, vale a mobile.
 2. **Desenhe offline-first e sync** (`references/offline-sync.md`): a UI lê do local, a escrita é
    otimista com **outbox durável**, e a reconciliação (conflito/fila/idempotência) é um problema
    de dados distribuídos com política **explícita** — nenhuma escrita do usuário some em silêncio.

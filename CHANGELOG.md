@@ -4,6 +4,15 @@ Todas as mudanças relevantes deste pacote, no formato [Keep a Changelog](https:
 com versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 
+## [0.6.0] — 2026-10-14
+Corte de Target API vigente, ponteiros corrigidos, divisão de mando com as skills de linguagem.
+
+### Corrigido
+- `references/entrega-lojas.md`: citava `references/auto-update.md`, que só existe na desktop; agora `schematize-desktop → references/auto-update.md`.
+- `references/stack-versoes.md`: o corte de 31/08/2026 (API 36) já passou; passa a "vigente", com extensão até 01/11/2026 e isenção de app privado (doc oficial do Android). Próximo corte marcado `<!-- reverificar -->`.
+- `SKILL.md`: ponteiros para `schematize-swift`, `schematize-kotlin` e `schematize-dart`; a mobile manda em auth/offline/push/loja, as de linguagem no código.
+- `description` com 350 caracteres ou menos (era 1010).
+
 ## [0.5.2] — 2026-09-30
 O piso de orquestração passa a ser **herdado** da base em vez de copiado à mão: uma mudança na engineering não exige mais editar 38 arquivos.
 
