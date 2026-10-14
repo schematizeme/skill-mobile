@@ -3,10 +3,10 @@ name: schematize-mobile
 metadata:
   version: 0.6.1
 description: >-
-  Mobile: nativo vs cross (fit + ADR), offline-first e sync, IAM mobile (OIDC/PKCE, passkeys), push e lojas. Use ao
-  revisar app iOS/Android/KMP/Flutter/RN, login, offline, push ou publicação (Info.plist, AndroidManifest).
+  Mobile: nativo vs cross (fit + ADR), offline-first, IAM mobile (OIDC/PKCE, passkeys), push e lojas. Use ao revisar app iOS/Android/KMP/Flutter/RN, Info.plist ou AndroidManifest.
 ---
 <!-- cross-skill: iam.md, linguagens.md -> schematize-engineering -->
+<!-- cross-skill: protocolos.md -> schematize-iam -->
 
 # Engenharia de apps mobile da casa (schematize-mobile)
 
@@ -23,6 +23,30 @@ do **rol sancionado** (Go/Rust/Elixir/C#/Zig/Ruby) e um **IAM como app separada*
 de UX, nunca a fonte de verdade nem o guardião do segredo.
 
 **Versão:** skill `schematize-mobile` v0.6.1. Changelog em `CHANGELOG.md`.
+
+## Precedência e herança (leia antes de divergir)
+
+<!-- herdado:engineering/precedencia:dominio intro="Esta skill é o recorte **mobile (iOS, Android, cross-platform)** da base: especializa a `schematize-engineering` para o cliente que roda na máquina do adversário e na rede que falha, sem afrouxar piso (`schematize-engineering` → `references/linguagens.md` §2.2)." cmd="mobile" -->Esta skill é o recorte **mobile (iOS, Android, cross-platform)** da base: especializa a `schematize-engineering` para o cliente que roda na máquina do adversário e na rede que falha, sem afrouxar piso (`schematize-engineering` → `references/linguagens.md` §2.2).
+
+1. **Onde esta skill divergir da base, a BASE MANDA.** Aqui mora a especialização do domínio ou da
+   ferramenta — o como, o padrão, o gate. Divergência de *piso* é defeito desta skill, não variante local.
+2. **O que não está repetido aqui é HERDADO, não dispensado.** Esta skill herda os pisos da base e
+   os comandos dela cobrem o **domínio**, não o piso geral. Valem integralmente, sem cópia local:
+   - **§28 Archive** — `<projeto>/<projeto>_archive/` é **repositório git próprio, PRIVADO e
+     obrigatório**, criticidade 0 (`schematize-archive`).
+   - **§35 Definition of Done** e a lista de anti-padrões (citada por **título**, nunca por número).
+   - **§39 Índice/MAPA** — enumeração exaustiva (uma entrada por unidade chamável, `M == N`) e grafo
+     com arestas em ASCII (`A -> B`), nunca a seta unicode.
+   - **IAM** (`schematize-engineering` → `references/iam.md`): identidade ≠ email, ≥2 fatores, ReBAC
+     multi-tenant, argon2id-only para senha nova, sessão longa e logout irreversível.
+   - **Efeito externo** nunca sai de não-produção (`schematize-engineering` →
+     `references/efeitos-externos.md`).
+   - **Orquestração** (`schematize-engineering` → `references/orquestracao.md` §9): o principal não
+     desenvolve (é Claude Opus); executor mais barato que resolve — `haiku`/`sonnet` → Codex Terra → Cursor → `opus` só após falha; visual direto ao Codex; imagem nunca pelo Claude: detecta Codex/Gemini e pergunta ao usuário qual usar (Codex é a sugestão, não automática), nunca API paga.
+3. **QA, ops, IAM e índice não têm comando próprio aqui:** vêm da base `/eng-*`. Para trabalho
+   contínuo use `/eng-overdev`; para planejar `/eng-plan`; para varrer a base `/eng-scan`; para
+   revisão geral `/eng-review` (e `/eng-ops`, `/eng-iam`, `/eng-index`). Os comandos
+   `/mobile-*` cobrem o domínio desta skill; o piso geral é o da base.<!-- /herdado -->
 
 ## Comandos (Claude Code)
 
@@ -94,7 +118,7 @@ Independente do reference, estes limites nunca são cruzados:
    trivial. (mesma regra do `NEXT_PUBLIC_` do `schematize-web`).
 3. **Auth é delegada ao IdP da casa, no servidor.** O app **não** implementa login próprio: usa
    **OIDC/OAuth 2.1 + PKCE** contra `auth.<domain>`, retorno por **Universal/App Links verificados**
-   e login no **navegador do sistema (não WebView)**. Authz **sempre no servidor** (deny-default,
+   e login no **navegador do sistema (não WebView)** (o desenho do broker é da `schematize-iam → references/protocolos.md`). Authz **sempre no servidor** (deny-default,
    token fino, ReBAC) — esconder botão é UX, não autorização.
 4. **Secure storage para token/chave — e nada de vazamento.** Refresh e chaves em
    **Keychain/Keystore** (Secure Enclave/StrongBox); **nunca** em store em claro, e **nunca** token/

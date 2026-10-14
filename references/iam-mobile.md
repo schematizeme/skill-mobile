@@ -1,5 +1,13 @@
 <!-- cross-skill: iam.md -> schematize-engineering -->
+<!-- cross-skill: protocolos.md, fatores.md, sessao.md, topologia.md -> schematize-iam -->
 # IAM no mobile — o mesmo piso da casa, no cliente hostil
+
+> **Dono do broker: `schematize-iam`.** O desenho do `auth.<domain>` (authorization code + PKCE passo a
+> passo, tokens e JWKS, fatores e passkeys, sessão e logout, recuperação) vive lá: `schematize-iam →
+> references/protocolos.md`, `schematize-iam → references/fatores.md`, `schematize-iam →
+> references/sessao.md`, `schematize-iam → references/topologia.md` (fluxo por tipo de cliente). Este
+> arquivo guarda **só o que é do cliente nativo** (deep link, secure storage, biometria, passkey de
+> plataforma) e aponta para lá o resto; o gate estático do IdP é `schematize-iam → scripts/check-iam.sh`.
 
 > Este reference **não inventa** um IAM de mobile: ele **casa com o `iam.md`** da
 > `schematize-engineering` (o piso agnóstico) e diz **como** aquele piso se realiza num app, onde
@@ -13,8 +21,9 @@
 - **VETADO** o app ter login próprio, guardar hash de senha, ou falar com o banco de usuários.
   Ele **redireciona** ao `auth.<domain>` por **OIDC/OAuth 2.1 + PKCE** e recebe tokens de volta,
   exatamente como o front web (`iam.md` §1). O IdP é o mesmo pra web, app e serviços.
-- **Authorization Code + PKCE obrigatório** (nunca implicit flow, nunca ROPC/senha direta no app).
-  O `code_verifier` é gerado e guardado no device só durante o fluxo.
+- **Authorization Code + PKCE obrigatório** (nunca implicit flow, nunca ROPC/senha direta no app;
+  o passo a passo é `schematize-iam → references/protocolos.md`). O `code_verifier` é gerado e
+  guardado no device só durante o fluxo.
 - **Segredo de client NÃO existe no app.** App é **public client** (não confidencial): não há
   `client_secret` no bundle — extrair o bundle é trivial. Segurança vem do PKCE + redirect
   registrado, não de um segredo embutido (`seguranca-mobile.md`, §"nunca segredo no bundle").

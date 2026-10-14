@@ -24,7 +24,7 @@ memória.
 2. **Auth delegada ao IdP da casa, no servidor.** O app **não** implementa login: **OIDC/OAuth 2.1
    + PKCE** contra `auth.<domain>`, retorno por **Universal/App Links verificados**, login no
    **navegador do sistema (não WebView)**. **Authz sempre no servidor** (deny-default, token fino,
-   ReBAC) — esconder botão é UX, não autorização.
+   ReBAC) — esconder botão é UX, não autorização. Desenho do broker: `schematize-iam`.
 3. **Secure storage e zero vazamento.** Refresh/chaves em **Keychain/Keystore** (Secure Enclave/
    StrongBox); **nunca** em store em claro; **nunca** token/PII em log, crash report ou analytics.
    Dado sensível e a outbox de sync **cifrados em repouso**.

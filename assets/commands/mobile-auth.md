@@ -3,10 +3,13 @@ description: schematize-mobile — força/audita o IAM mobile casado com o iam.m
 argument-hint: "[dir do app, ex: <projeto>_ios | <projeto>_android | <projeto>_kmp]"
 ---
 <!-- cross-skill: iam.md -> schematize-engineering -->
+<!-- cross-skill: protocolos.md, fatores.md, sessao.md -> schematize-iam -->
 
 Force/audite o **IAM mobile** deste app (`references/iam-mobile.md`), **casado com o `iam.md`** da
 `schematize-engineering`. O app é só **mais um cliente do IdP da casa** — ele **não** implementa
 auth. Se o app não tem IAM ainda, **scaffolde** o fluxo correto; se tem, **audite** contra os pisos.
+
+> O broker (fluxo, tokens, fatores, sessão) é da `schematize-iam`: `schematize-iam → references/protocolos.md`, `schematize-iam → references/fatores.md`, `schematize-iam → references/sessao.md`; em auditoria rode também `schematize-iam → scripts/check-iam.sh`. Aqui só o lado do cliente nativo.
 
 ## 1. Delegação ao IdP (não reinventar auth)
 - O app é **public client** e delega ao `auth.<domain>` por **OIDC/OAuth 2.1 + PKCE** — **VETADO**

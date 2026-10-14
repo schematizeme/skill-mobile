@@ -4,6 +4,14 @@ Todas as mudanças relevantes deste pacote, no formato [Keep a Changelog](https:
 com versionamento [SemVer](https://semver.org/lang/pt-BR/).
 
 
+## [0.7.0] — 2026-10-14
+Integração com a nova `schematize-iam`: o IAM mobile aponta para o broker em vez de recopiá-lo; gate da skill-dev verde.
+
+### Alterado
+- `references/iam-mobile.md`, `assets/commands/mobile-auth.md`, `SKILL.md` e `assets/CLAUDE.md` apontam para `schematize-iam → references/protocolos.md`/`fatores.md`/`sessao.md`/`topologia.md` e para o gate `schematize-iam → scripts/check-iam.sh`; fica aqui só o que é do cliente nativo (deep link, secure storage, biometria, passkey de plataforma). Motivo: a spec do broker passou a ter dona, e duas cópias divergem.
+- Blocos herdados `engineering/precedencia` (variante `dominio`) e `engineering/orquestracao` inseridos onde faltavam e sincronizados (`tools/sync-herdados.mjs`).
+- Description reduzida para ≤190 caracteres (orçamento do catálogo, 45 skills).
+
 ## [0.6.1] — 2026-10-14
 Ressincronização dos blocos herdados com a engineering v0.27.0; sem mudança de piso próprio.
 
